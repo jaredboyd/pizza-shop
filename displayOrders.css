@@ -1,0 +1,21 @@
+body {
+	background-color: lightgray;
+}
+
+table {
+	table-layout: fixed;
+	border-collapse: collapse;
+	margin: 0px auto;
+}
+
+table td {
+	padding: 5px;
+	word-wrap: break-word;
+	max-width: 200px;
+	border: solid 1px;
+}
+
+#ordersTable {
+	margin: 0px auto;
+}
+
