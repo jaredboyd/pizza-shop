@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 29, 2017 at 09:12 AM
+-- Generation Time: May 11, 2017 at 10:26 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -19,6 +19,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `pizza_shop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `cid` int(11) NOT NULL,
+  `fName` varchar(30) NOT NULL,
+  `lName` varchar(40) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`cid`, `fName`, `lName`, `email`, `password`) VALUES
+(1, 'Jared', 'Boyd', 'test', 'test'),
+(2, 'Jared', 'Boyd', 'jrb98810@ucmo.edu', 'password'),
+(3, 'New', 'Account', 'abc@abc.com', 'password'),
+(4, 'Nathan', 'Fillion', 'shiny@firefly.com', 'serenity');
 
 -- --------------------------------------------------------
 
@@ -68,11 +92,18 @@ INSERT INTO `orders` (`oid`, `fName`, `lName`, `size`, `sauce`, `cheese`, `toppi
 (20, 'Shepherd', 'Book', 'large', 'extra', 'extra', 'pepperoni, bacon, mushrooms', 'delivery', 16.5, '2017-04-27 22:58:54', '2017-04-27 23:06:12', '2017-04-27 23:06:26'),
 (21, 'New', 'Order', 'medium', 'normal', 'normal', 'No Toppings', 'carryout', 10, '2017-04-27 22:59:59', NULL, NULL),
 (22, 'New', 'Account', 'medium', 'normal', 'normal', 'No Toppings', 'carryout', 10, '2017-04-29 02:08:26', NULL, NULL),
-(23, 'Nathan', 'Fillion', 'large', 'normal', 'extra', 'pepperoni, bacon, blackOlives, mushrooms', 'delivery', 18, '2017-04-29 02:12:01', NULL, NULL);
+(23, 'Nathan', 'Fillion', 'large', 'normal', 'extra', 'pepperoni, bacon, blackOlives, mushrooms', 'delivery', 18, '2017-04-29 02:12:01', NULL, NULL),
+(24, 'New', 'Account', 'medium', 'normal', 'normal', 'pepperoni, sausage', 'carryout', 13, '2017-05-11 15:24:05', NULL, NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`cid`);
 
 --
 -- Indexes for table `orders`
@@ -85,10 +116,15 @@ ALTER TABLE `orders`
 --
 
 --
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
