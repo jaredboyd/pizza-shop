@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 11, 2017 at 10:26 PM
+-- Generation Time: May 12, 2017 at 10:47 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -31,7 +31,7 @@ CREATE TABLE `customer` (
   `fName` varchar(30) NOT NULL,
   `lName` varchar(40) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `password` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -39,10 +39,10 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`cid`, `fName`, `lName`, `email`, `password`) VALUES
-(1, 'Jared', 'Boyd', 'test', 'test'),
-(2, 'Jared', 'Boyd', 'jrb98810@ucmo.edu', 'password'),
-(3, 'New', 'Account', 'abc@abc.com', 'password'),
-(4, 'Nathan', 'Fillion', 'shiny@firefly.com', 'serenity');
+(1, 'Jared', 'Boyd', 'test@test.com', '937e8d5fbb48bd4949536cd65b8d35c426b80d2f830c5c308e2cdec422ae2244'),
+(2, 'Nathan', 'Fillion', 'shiny@firefly.com', 'c6c2307ac025abfed680cb646bc38ca3c3d6e02662a0f2faa143dcff22268a49'),
+(3, 'New', 'Account', '123@abc.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8'),
+(4, 'Another', 'Newguy', 'abc@123.com', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8');
 
 -- --------------------------------------------------------
 
@@ -90,10 +90,12 @@ INSERT INTO `orders` (`oid`, `fName`, `lName`, `size`, `sauce`, `cheese`, `toppi
 (18, 'Simon', 'Tam', 'large', 'normal', 'normal', 'sausage, greenPeppers', 'carryout', 15, '2017-04-27 22:56:03', '2017-04-27 23:02:04', '2017-04-27 23:06:16'),
 (19, 'Inara', 'Serra', 'medium', 'extra', 'normal', 'pepperoni, sausage', 'carryout', 13, '2017-04-27 22:57:23', '2017-04-27 23:05:52', '2017-04-27 23:06:06'),
 (20, 'Shepherd', 'Book', 'large', 'extra', 'extra', 'pepperoni, bacon, mushrooms', 'delivery', 16.5, '2017-04-27 22:58:54', '2017-04-27 23:06:12', '2017-04-27 23:06:26'),
-(21, 'New', 'Order', 'medium', 'normal', 'normal', 'No Toppings', 'carryout', 10, '2017-04-27 22:59:59', NULL, NULL),
+(21, 'New', 'Order', 'medium', 'normal', 'normal', 'No Toppings', 'carryout', 10, '2017-04-27 22:59:59', '2017-05-12 15:10:54', NULL),
 (22, 'New', 'Account', 'medium', 'normal', 'normal', 'No Toppings', 'carryout', 10, '2017-04-29 02:08:26', NULL, NULL),
 (23, 'Nathan', 'Fillion', 'large', 'normal', 'extra', 'pepperoni, bacon, blackOlives, mushrooms', 'delivery', 18, '2017-04-29 02:12:01', NULL, NULL),
-(24, 'New', 'Account', 'medium', 'normal', 'normal', 'pepperoni, sausage', 'carryout', 13, '2017-05-11 15:24:05', NULL, NULL);
+(24, 'New', 'Account', 'medium', 'normal', 'normal', 'pepperoni, sausage', 'carryout', 13, '2017-05-11 15:24:05', NULL, NULL),
+(25, 'Jared', 'Boyd', 'medium', 'normal', 'normal', 'pepperoni, sausage', 'delivery', 13, '2017-05-12 15:05:49', NULL, NULL),
+(26, 'Nathan', 'Fillion', 'medium', 'normal', 'normal', 'onions', 'carryout', 11.5, '2017-05-12 15:08:37', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -119,12 +121,12 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `oid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

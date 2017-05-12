@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
 	} else {
 
 		$email = $_POST['email'];
-		$password = $_POST['password'];
+		$password = hash('sha256', $_POST['password']);
 
 		$q = mysqli_query($dbc, "SELECT * FROM customer WHERE password = '$password' AND email = '$email'");
 		$rows = mysqli_num_rows($q);
