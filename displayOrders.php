@@ -13,9 +13,41 @@
 <?php
 include 'dbconnection.php';
 
-$q = "SELECT * FROM orders WHERE 1";
+
+/*-----Pagination-----*/
+//Number of records per page
+$displayRecords = 10;
+
+//Determine number of pages
+if (isset($_GET['p']) && is_numeric($_GET['p'])) {
+	//Already determined
+	$pages = $_GET['p'];
+} else {
+	//Need to determine
+	$numRecordsQuery = "SELECT Count(*) FROM orders";
+	$numRecordsResult = mysqli_query($dbc, $numRecordsQuery);
+	$row = mysqli_fetch_array($numRecordsResult, MYSQLI_NUM);
+	$records = $row[0];
+
+	if($records > $displayRecords) {
+		$pages = ceil($records/$displayRecords);
+	} else {
+		$pages = 1;
+	}
+}
+
+//Determine starting point in database
+if(isset($_GET['s']) && is_numeric($_GET['s'])) {
+	$start = $_GET['s'];
+} else {
+	$start = 0;
+}
+
+
+$q = "SELECT * FROM orders ORDER BY oid DESC LIMIT $start, $displayRecords";;
 
 $r = mysqli_query($dbc, $q);
+
 
 ?>
 <div id="ordersTable">
@@ -34,10 +66,19 @@ $r = mysqli_query($dbc, $q);
 		<th align="left">Picked Up/Delivered</th>
 	</tr>
 <?php
+
+//Alternate background colors of the table
+$bg = 'lightgray';
+
 	if ($r) {
 		while ($row = mysqli_fetch_array($r)) {
+			if($bg == 'lightgray') {
+				$bg = 'white';
+			} else {
+				$bg = 'lightgray';
+			}
 			echo '
-				<tr>
+				<tr bgcolor="' . $bg . '">
 					<td>'. $row["oid"] . '</td>
 					<td>'. $row["fName"] . ' ' . $row["lName"] .'</td>
 					<td>'. $row["size"] .'</td>
@@ -68,17 +109,37 @@ $r = mysqli_query($dbc, $q);
 ?>
 </table>
 </div>
-</body>
-</html>
 
 <?php
+//Page navigation
+if($pages > 1) {
+	echo '<br /><p>';
 
-function Cooked() {
+	//Determine which page is being viewed
+	$currentPage = ($start/$displayRecords) + 1;
 
-}
+	//Link to previous page
+	if($currentPage != 1) {
+		echo '<a href="displayOrders.php?s=' . ($start - $displayRecords) . '&p=' . $pages . '">Previous</a> ';
+	}
 
-function pickedupDelivered() {
+	//Numeric links
+	for($i = 1; $i <= $pages; $i++) {
+		if($i != $currentPage) {
+			echo '<a href="displayOrders.php?s=' . (($displayRecords * ($i - 1))) . '&p=' . $pages . '">' . $i . '</a> ';
+		} else {
+			echo $i . ' ';
+		}
+	}
+
+	//Link to next page
+	if($currentPage != $pages) {
+		echo '<a href="displayOrders.php?s=' . ($start + $displayRecords) . '&p=' . $pages . '">Next</a>';
+	}
 
 }
 
 ?>
+</body>
+</html>
+
